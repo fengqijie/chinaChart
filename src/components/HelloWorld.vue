@@ -52,6 +52,7 @@ export default {
         return {
             special: ["北京","天津","上海","重庆","香港","澳门"],
             mapdata: [],
+            originalValue: [], // 保存最初的全国地图的 series 的 data
             option: {
                 title: {
                     text: '全国终端分布',
@@ -120,6 +121,7 @@ export default {
                         })
                     }
                     _self.mapdata = d;
+                    _self.originalValue = d;
                     //注册地图
                     $echarts.registerMap('china', res.data);
                     //绘制地图
@@ -160,7 +162,7 @@ export default {
                             });	
                     }	
                 }else{
-                    _self.renderMap('china',this.mapdata);
+                    _self.renderMap('china', _self.originalValue);
                 }
             });
         },
